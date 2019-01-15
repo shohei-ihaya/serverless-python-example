@@ -1,0 +1,10 @@
+{
+  "SendEmail": {
+    "BucketName": "test",
+    "CodeKey": "code.zip",
+    "CompanyMailAddress": "example@example.com",
+    "CompanyName": "company",
+    "CorporateSiteDomain": "example.com",
+    "SesEndpointUrl": "http://localstack:4579"
+  }
+}
