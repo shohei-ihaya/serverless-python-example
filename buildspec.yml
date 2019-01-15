@@ -1,0 +1,33 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - sudo apt-get update
+      - apt-get install -y jq
+      - sudo apt-get install -y nodejs npm
+      - sudo npm cache clean
+      - npm config set strict-ssl false
+      - sudo npm install n -g
+      - sudo n stable
+      - sudo ln -sf /usr/local/bin/node /usr/bin/node
+      - sudo apt-get purge -y nodejs
+      - npm update npm -g
+      - npm -g install --unsafe-perm aws-sam-local
+      - pip install --upgrade pip
+      - pip install --upgrade awscli
+      - pip install --upgrade pipenv
+      - git clone https://github.com/sstephenson/bats.git
+      - cd bats
+      - sudo ./install.sh /usr/local
+      - cd ..
+  pre_build:
+    commands:
+      - pipenv run pip install -r <(pipenv lock -r)
+  build:
+    commands:
+      - python -B -m unittest src/tests/test_index.py
+      - bash ./integration_test.sh
+  post_build:
+    commands:
+      - bash ./deploy.sh
