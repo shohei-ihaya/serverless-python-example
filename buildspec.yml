@@ -23,11 +23,12 @@ phases:
       - cd ..
   pre_build:
     commands:
-      - pipenv run pip install -r <(pipenv lock -r)
+      - pipenv install
   build:
     commands:
-      - python -B -m unittest src/tests/test_index.py
-      - bash ./integration_test.sh
+      - pipenv install
+      - pipenv run python -B -m unittest src/tests/test_index.py
+      - pipenv run bash ./integration_test.sh
   post_build:
     commands:
       - bash ./deploy.sh
