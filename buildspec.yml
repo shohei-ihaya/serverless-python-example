@@ -13,8 +13,8 @@ phases:
       - sudo ln -sf /usr/local/bin/node /usr/bin/node
       - sudo apt-get purge -y nodejs
       - npm update npm -g
-      - npm -g install --unsafe-perm aws-sam-local
       - pip install --upgrade pip
+      - pip install --upgrade aws-sam-cli
       - pip install --upgrade awscli
       - pip install --upgrade pipenv
       - git clone https://github.com/sstephenson/bats.git
@@ -28,7 +28,7 @@ phases:
     commands:
       - pipenv install
       - pipenv run python -B -m unittest src/tests/test_index.py
-      - pipenv run bash ./integration_test.sh
+      - bats ./integration_test.sh
   post_build:
     commands:
       - bash ./deploy.sh
