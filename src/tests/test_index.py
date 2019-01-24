@@ -20,10 +20,10 @@ class TestMethods(unittest.TestCase):
 
     def test_build_mail_info_to_company(self):
         expect = {
-            "fa": self.envs['company_mail_address'],
-            "da": self.envs['company_mail_address'],
+            "fa": self.envs['CompanyMailAddress'],
+            "da": self.envs['CompanyMailAddress'],
             "rta": self.mail_info["email"],
-            "title": f"{self.envs['corporate_site_domain']}へのお問い合わせ",
+            "title": f"{self.envs['CorporateSiteDomain']}へのお問い合わせ",
             "body": f"<html><body><h3>{self.mail_info['name']}様からのお問い合わせ</h3><p>メールアドレス：{self.mail_info['email']}</p><p>本文：{self.mail_info['text']}</p></body></html>",
         }
         self.assertEqual(main.build_mail_info_to_company(
@@ -31,11 +31,11 @@ class TestMethods(unittest.TestCase):
 
     def test_build_mail_info_to_customer(self):
         expect = {
-            "fa": self.envs["company_mail_address"],
+            "fa": self.envs["CompanyMailAddress"],
             "da": self.mail_info["email"],
             "title": "お問い合わせありがとうございます。",
             "body": (f"<b>{self.mail_info['name']}様</b><br><br>"
-                     f"こんにちは、{self.envs['company_name']}。<br>"
+                     f"こんにちは、{self.envs['CompanyName']}です。<br>"
                      "この度は弊社コーポレートサイトにてお問い合わせいただき、誠にありがとうございます。<br>"
                      "以下の通り承りましたことをご連絡させていただきます。<br>"
                      "担当者が確認し次第、折り返しご連絡いたしますので、今しばらくお待ち下さい。<br><br>"
