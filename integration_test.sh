@@ -8,7 +8,7 @@ setup() {
 
 teardown() {
     echo "teardown"
-    docker-compose stop
+    docker-compose down
 }
 
 # Sleep some seconds needed for stable test pass(if not, sometimes localstack's docker not started yet when run `sam loacl invoke`)
@@ -17,7 +17,7 @@ teardown() {
 # As a workaround, read body json and create event json like {"body" : {"key":"val"}} which format is than lambda actually get at production dev
 
 # This test use 'bats'.
-# You should write such way `[(space)'actual' = 'expcted'(space)]`. Otherwise, you'll fail tet with status 127
+# You should write such way `[(space)'actual' = 'expcted'(space)]`. Otherwise, you'll fail test with status 127
 # Status 127 generally means 'command not found'.
 
 @test "Lambda function should return correct response" {
