@@ -24,7 +24,7 @@ teardown() {
     sleep 5
     body=$(echo $(cat src/tests/payload_body.json) | sed -e 's/"/\\\\\\"/g')
     sed -e "s/content/$body/" src/tests/payload_template.json > event.json
-    actual=`sam local invoke --docker-network ${docker_network_id} -t template.yml --event event.json --env-vars environments/sam_local_env.json | jq -r .`
+    actual=`sam local invoke "SendEmail" --docker-network ${docker_network_id} -t template.yml --event event.json --env-vars environments/sam_local_env.json | jq -r .`
     rm event.json
     [ `echo "${actual}" | jq .body` = '"success"' ]
     [ `echo "${actual}" | jq .statusCode` -eq 200 ]
