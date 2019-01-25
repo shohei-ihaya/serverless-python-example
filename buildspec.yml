@@ -31,9 +31,8 @@ phases:
       - pipenv install
   build:
     commands:
-      - pipenv install
       - pipenv run python -B -m unittest src/tests/test_index.py
       - bats ./integration_test.sh
   post_build:
     commands:
-      - bash ./deploy.sh
+      - if [ "$CODEBUILD_BUILD_SUCCEEDING" = "1" ]; then bash ./deploy.sh; else exit 1; fi
