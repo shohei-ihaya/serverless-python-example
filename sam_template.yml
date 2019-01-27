@@ -22,7 +22,7 @@ Resources:
 
     Properties:
       # This function uses the python3.6 runtime.
-      Runtime: python3.6
+      Runtime: python3.7
 
       # Set timeout 300s
       Timeout: 300
