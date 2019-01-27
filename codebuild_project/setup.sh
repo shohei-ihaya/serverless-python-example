@@ -1,3 +1,13 @@
+# 1. Create service role for attach codebuild.
+#    If the service role which has same name, just skip creating step and proceed next step.
+#
+# 2. Replace string "serviceRoleArn" by service role's arn.
+#    When doing that, you have to escape arn to use regex.
+#
+# 3. Create code build project and set webhook.
+#
+# 4. Start first build.
+
 role_name="codebuild-serverless-python-service-role"
 
 if ! arn=`aws iam get-role --role-name ${role_name} | jq -r .Role.Arn`; then
