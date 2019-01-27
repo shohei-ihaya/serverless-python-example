@@ -1,0 +1,59 @@
+{
+  "name": "serverless-python",
+  "description": "",
+  "source": {
+    "type": "GITHUB",
+    "location": "https://github.com/Climber22/serverless-python-example",
+    "gitCloneDepth": 0,
+    "buildspec": "",
+    "auth": { "type": "OAUTH", "resource": "" },
+    "reportBuildStatus": true
+  },
+  "artifacts": { "type": "NO_ARTIFACTS" },
+  "cache": { "type": "NO_CACHE" },
+  "environment": {
+    "type": "LINUX_CONTAINER",
+    "image": "aws/codebuild/python:3.7.1",
+    "computeType": "BUILD_GENERAL1_SMALL",
+    "environmentVariables": [
+      {
+        "name": "FunctionName",
+        "value": "serverless-python",
+        "type": "PLAINTEXT"
+      },
+      {
+        "name": "BucketName",
+        "value": "serverless-test-python",
+        "type": "PLAINTEXT"
+      },
+      {
+        "name": "CompanyMailAddress",
+        "value": "ihaya.shohei@me.com",
+        "type": "PLAINTEXT"
+      },
+      { "name": "CompanyName", "value": "company", "type": "PLAINTEXT" },
+      {
+        "name": "CorporateSiteDomain",
+        "value": "example.com",
+        "type": "PLAINTEXT"
+      },
+      {
+        "name": "SesEndpointUrl",
+        "value": "https://email.us-east-1.amazonaws.com",
+        "type": "PLAINTEXT"
+      }
+    ],
+    "privilegedMode": true
+  },
+  "serviceRole": "serviceRoleArn",
+  "timeoutInMinutes": 15,
+  "queuedTimeoutInMinutes": 15,
+  "logsConfig": {
+    "cloudWatchLogs": {
+      "status": "ENABLED",
+      "groupName": "serverless-python",
+      "streamName": "serverless-python-stream"
+    },
+    "s3Logs": { "status": "DISABLED" }
+  }
+}
