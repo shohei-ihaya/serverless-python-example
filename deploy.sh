@@ -16,9 +16,9 @@ s3_keyname="${FunctionName}/${filename}"
 aws s3 cp $filename s3://${BucketName}/${FunctionName}/
 
 # Create cloud formation template
-cp ../template.yml ./
+cp ../sam_template.yml ./
 aws cloudformation package \
-    --template-file template.yml \
+    --template-file sam_template.yml \
     --s3-bucket ${BucketName} \
     --output-template-file packaged-${FunctionName}.yml
 
